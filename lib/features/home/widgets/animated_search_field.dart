@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shopyneer/config/navigation/nav.dart';
-import 'package:shopyneer/config/theme/colors.dart';
 import 'package:shopyneer/core/utils/get_asset_path.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 class AnimatedSearchField extends StatefulWidget {
   void Function(String)? onSubmit;
+  String? hint;
 
-  AnimatedSearchField({this.onSubmit});
+  AnimatedSearchField({this.onSubmit, this.hint});
 
   @override
   _AnimatedSearchFieldState createState() => _AnimatedSearchFieldState();
@@ -25,9 +27,10 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
         TextField(
           controller: _searchController,
           onSubmitted: widget.onSubmit,
+          style: getRegularPrimary14Style(),
           decoration: InputDecoration(
-            labelStyle: TextStyle(fontSize: 12.sp),
-            hintText: "بتدوري علي أيه ... ؟",
+            hintText: widget.hint ?? "بتدوري علي أيه ... ؟",
+            hintStyle: getBoldGreyD014Style(),
             prefixIcon: InkWell(
               onTap: () {
                 Nav.searchPage(context, _searchController.text);

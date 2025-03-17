@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../../config/theme/colors.dart';
 import '../../utils/widget_utils.dart';
 
 class CustomFormField extends StatefulWidget {
@@ -31,7 +31,8 @@ class CustomFormField extends StatefulWidget {
   State<CustomFormField> createState() => _CustomFormFieldState();
 }
 
-class _CustomFormFieldState extends State<CustomFormField> with SingleTickerProviderStateMixin {
+class _CustomFormFieldState extends State<CustomFormField>
+    with SingleTickerProviderStateMixin {
   // late AnimationController animationController ;
   //  @override
   // void initState() {

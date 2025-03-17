@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shopyneer/config/localization/loc_keys.dart';
-import 'package:shopyneer/config/theme/colors.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/get_asset_path.dart';
 import '../../utils/vaildData/valid_data.dart';
 
@@ -27,6 +27,7 @@ class EmailField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: getBoldPrimary14Style(),
       controller: controller,
       focusNode: focusNode,
       onTapOutside: (event) => FocusScope.of(context).unfocus(),
@@ -58,7 +59,7 @@ class EmailField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: primary,
+            color: greyFA,
           ),
           borderRadius: BorderRadius.all(
             Radius.circular(
@@ -66,6 +67,25 @@ class EmailField extends StatelessWidget {
             ),
           ),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: primary,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: red,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(
+              5,
+            ),
+          ),
+        ),
+        errorStyle: getBoldGreyD012Style().copyWith(color: Colors.red),
         labelStyle: getRegularBlack14Style(),
         prefixIcon: showPreFixIcon == false
             ? null
@@ -91,6 +111,7 @@ class EmailField extends StatelessWidget {
                 ),
               ),
         fillColor: Colors.transparent,
+        hintStyle: getBoldGreyD012Style(),
         filled: true,
       ),
     );

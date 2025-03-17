@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/colors.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/vaildData/valid_data.dart';
 
 class NameField extends StatelessWidget {
@@ -61,6 +61,7 @@ class NameField extends StatelessWidget {
         AutofillHints.newUsername,
       ],
       validator: validate,
+      style: getBoldPrimary14Style(),
       decoration: InputDecoration(
         hintText: hint ?? "الإسم",
         focusedBorder: OutlineInputBorder(
@@ -75,7 +76,7 @@ class NameField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: primary,
+            color: greyFA,
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(
@@ -83,8 +84,28 @@ class NameField extends StatelessWidget {
             ),
           ),
         ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: red,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(
+              5,
+            ),
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: primary,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        errorStyle: getBoldGreyD012Style().copyWith(color: Colors.red),
         labelStyle: getRegularBlack14Style(),
         fillColor: Colors.white,
+        hintStyle: getRegularGrey12Style(),
         filled: true,
       ),
     );

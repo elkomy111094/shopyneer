@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart'; // For UI
 import 'package:shopyneer/config/localization/loc_keys.dart';
-import 'package:shopyneer/config/theme/colors.dart';
 import 'package:shopyneer/core/widgets/custom_app_bar.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../core/utils/get_asset_path.dart';
@@ -15,7 +15,7 @@ class NotificationPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: CustomAppBar(routeName: Loc.notifications()),
+        appBar: GeneralAppBar(routeName: Loc.notifications()),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -23,9 +23,9 @@ class NotificationPage extends StatelessWidget {
             Center(
                 child: Container(
               width: 500.h,
-              height: 500.h,
+              height: 430.h,
               decoration: BoxDecoration(
-                  color: primary.withOpacity(.1), shape: BoxShape.circle),
+                  color: primary.withOpacity(.05), shape: BoxShape.circle),
               child: Picture(
                 getAssetImage("no_note.webp"),
               ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/theme.dart';
 import 'package:size_config/size_config.dart';
-
-import '../../../config/theme/colors.dart';
-import '../../../config/theme/theme.dart';
 
 class InterlacedAvatars extends StatelessWidget {
   InterlacedAvatars({super.key, required this.images});
@@ -24,7 +23,9 @@ class InterlacedAvatars extends StatelessWidget {
       return buildImage(0);
     }
     return SizedBox(
-      width: ((avatarsNumber + 1) * imageSize) - ((avatarsNumber - 1) * imageGap) + (13.w),
+      width: ((avatarsNumber + 1) * imageSize) -
+          ((avatarsNumber - 1) * imageGap) +
+          (13.w),
       height: imageSize,
       child: Stack(
         children: <Widget>[
@@ -41,7 +42,8 @@ class InterlacedAvatars extends StatelessWidget {
   }
 
   Container buildImage(int i) {
-    final isEnd = (avatarsNumber >= maxAvatarsNumber) && (i == avatarsNumber - 1);
+    final isEnd =
+        (avatarsNumber >= maxAvatarsNumber) && (i == avatarsNumber - 1);
     return Container(
       width: imageSize,
       height: imageSize,

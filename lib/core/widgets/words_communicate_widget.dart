@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../config/theme/colors.dart';
-import '../../config/theme/styles_manager.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 
 class WordsCommunicateWithWidget extends StatelessWidget {
   const WordsCommunicateWithWidget(

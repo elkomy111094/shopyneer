@@ -38,19 +38,19 @@ dependencies:
   intl: ">=0.18.1 <0.20.0"
 
   pdf:
-  open_filex:
+
   shared_preferences: ^2.2.2
   easy_localization: ^3.0.3
   get_it: ^7.6.6
   event_bus: ^2.0.0
   equatable: ^2.0.5
   dartz: ^0.10.1
-  size_config: ^2.0.3
+  size_config:
   path_provider: ^2.1.2
   geolocator: ^9.0.2
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.2.0+3
-
+  flutter_countdown_timer :
   flutter_staggered_animations: ^1.0.0
   connectivity_plus: ^6.1.0
   internet_connection_checker: ^1.0.0

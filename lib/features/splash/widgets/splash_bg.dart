@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopyneer/config/theme/colors.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:shopyneer/core/utils/get_asset_path.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
 

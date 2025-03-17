@@ -2,11 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shopyneer/config/navigation/nav.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
 import 'package:shopyneer/core/utils/get_asset_path.dart';
 import 'package:shopyneer/core/widgets/elevated_button.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 class ShoppingCartPage extends StatefulWidget {
@@ -20,19 +20,19 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: greyFA,
-      body: Padding(
-        padding: EdgeInsets.all(10.h),
-        child: Column(
-          children: [
-            Container(
-              height: 50.h,
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Container(
+            height: 60.h,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "العربه",
-                    style: getBoldBlack20Style(),
+                    style: getPrimaryBoldStyle20Style(),
                   ),
                   Text(
                     "  ( منتج واحد )  ",
@@ -40,48 +40,43 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                   ),
                   Spacer(),
                   Container(
-                    height: 40.h,
-                    width: 40.h,
-                    child: Card(
-                      color: primary.withOpacity(.1),
-                      child: Padding(
-                        padding: EdgeInsets.all(10.h),
-                        child: Picture(
-                          getAssetIcon("fav_home.svg"),
-                          width: 30.h,
-                          height: 30.h,
-                          color: primary,
-                        ),
+                    height: 50.h,
+                    width: 50.h,
+                    child: Padding(
+                      padding: EdgeInsets.all(10.h),
+                      child: Picture(
+                        getAssetIcon("fav_home.svg"),
+                        width: 30.h,
+                        height: 30.h,
+                        color: primary,
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            Gap(10.h),
-            Container(
-              height: 50.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: greyFA, borderRadius: BorderRadius.circular(10.h)),
+          ),
+          Container(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Row(
                 children: [
                   Picture(
                     getAssetIcon("location.svg"),
-                    width: 30.h,
-                    height: 30.h,
+                    width: 20.h,
+                    height: 20.h,
                     color: primary,
                   ),
                   Text(
                     " توصيل الي : ",
-                    style: getRegularPrimary14Style(),
+                    style: getBoldPrimary14Style(),
                   ),
                   Expanded(
                     child: Text(
                       " الف مسكن - مصر الجديده - القاهره -مصر ",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: getRegularBlack14Style(),
+                      style: getRegularBlack12Style(),
                     ),
                   ),
                   IconButton(
@@ -90,27 +85,31 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                 ],
               ),
             ),
-            Gap(20.h),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return CartItem();
-                      },
-                      itemCount: 10,
-                    ),
-                    Card(
-                      color: Colors.white,
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.h)),
-                      child: Row(
-                        children: [
-                          Expanded(
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return CartItem();
+                    },
+                    itemCount: 10,
+                  ),
+                  Card(
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.h),
+                        side: BorderSide(color: primary)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30.w),
                             child: TextFormField(
                               decoration: InputDecoration(
                                 hintText: "أكتب كود الخصم هنا ...",
@@ -123,90 +122,118 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                               ),
                             ),
                           ),
-                          Container(
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 5.w, vertical: 5.h),
+                          child: Container(
                             height: 50.h,
-                            width: 150.w,
+                            width: 100.w,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10.h)),
                             child: Center(
                               child: Text(
                                 "تفعيل",
-                                style: getBoldPrimary16Style(),
+                                style: getVBoldWhite12Style(),
                               ),
                             ),
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(20.h),
+                  Card(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.h),
+                        side: BorderSide(color: greyFA)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 10.h),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "المجموع الفرعي",
+                                style: getRegularGrey12Style(),
+                              ),
+                              Text(
+                                "( 5 منتجات)",
+                                style: getRegularGrey12Style(),
+                              ),
+                              Spacer(),
+                              Text(" 9000 ج.م", style: getBoldGreyD014Style()),
+                            ],
+                          ),
+                          Gap(20.h),
+                          Container(
+                            padding: EdgeInsets.all(10.h),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.h),
+                              border: Border.all(color: greyFA),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "مصاريف الشحن",
+                                      style: getRegularGrey12Style(),
+                                    ),
+                                    Spacer(),
+                                    Text(" 200 ج.م",
+                                        style: getBoldGreyD014Style()),
+                                  ],
+                                ),
+                                Divider(
+                                  color: greyFA,
+                                ),
+                                FreeShippingProgress(
+                                    currentAmount: 9200, requiredAmount: 10000),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            height: 20.h,
+                            color: greyFA,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "المجموع",
+                                style: getBoldBlack16Style(),
+                              ),
+                              Spacer(),
+                              Text(
+                                " 9200 ج.م",
+                                style: getBoldBlack16Style(),
+                              ),
+                            ],
+                          ),
+                          Gap(20.h),
                         ],
                       ),
                     ),
-                    Gap(20.h),
-                    Card(
-                      color: Colors.white,
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.h)),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.w, vertical: 10.h),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "المجموع الفرعي",
-                                  style: getRegularGrey12Style(),
-                                ),
-                                Text(
-                                  "( 5 منتجات)",
-                                  style: getRegularGrey12Style(),
-                                ),
-                                Spacer(),
-                                Text(" 9000 ج.م",
-                                    style: getBoldGreyD014Style()),
-                              ],
-                            ),
-                            Gap(20.h),
-                            Row(
-                              children: [
-                                Text(
-                                  "مصاريف الشحن",
-                                  style: getRegularGrey12Style(),
-                                ),
-                                Spacer(),
-                                Text(" 200 ج.م", style: getBoldGreyD014Style()),
-                              ],
-                            ),
-                            Divider(
-                              height: 20.h,
-                              color: greyFA,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "المجموع",
-                                  style: getBoldBlack16Style(),
-                                ),
-                                Spacer(),
-                                Text(
-                                  " 9200 ج.م",
-                                  style: getBoldBlack16Style(),
-                                ),
-                              ],
-                            ),
-                            Gap(20.h),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            CustomElevatedButton(
+          ),
+          Padding(
+            padding: EdgeInsets.all(10.h),
+            child: CustomElevatedButton(
               condition: true,
-              onTap: () {},
+              onTap: () {
+                Nav.checkpoutPage(context: context);
+              },
               buttonColor: Colors.black,
               buttonName: "إتمام عملية الشراء",
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -233,16 +260,9 @@ class _CartItemState extends State<CartItem> {
           child: Container(
             padding: const EdgeInsets.all(12.0),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  blurRadius: 4,
-                  spreadRadius: 2,
-                ),
-              ],
-            ),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8.0),
+                border: Border.all(color: greyFA)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -338,27 +358,17 @@ class _CartItemState extends State<CartItem> {
                         children: [
                           Text(
                             'بابلز',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
+                            style: getBoldPrimary16Style(),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             '4 زجاجات حفظ اللبن من بابلز *150 مل',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: getRegularGrey14Style(),
                           ),
                           const SizedBox(height: 8),
                           Text(
                             '359.00 ج.م',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: getBoldBlack14Style(),
                           ),
                         ],
                       ),
@@ -368,18 +378,12 @@ class _CartItemState extends State<CartItem> {
                 const SizedBox(height: 12),
                 Text(
                   'احصل عليها في الاثنين، 23 ديسمبر',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: getMediumBlue14Style().copyWith(color: Colors.green),
                 ),
+                Gap(10.h),
                 Text(
                   'اطلب خلال 21 ساعة 43 دقيقة',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+                  style: getMediumGrey14Style(),
                 ),
                 const SizedBox(height: 8),
                 Row(
@@ -425,9 +429,8 @@ class _CartItemState extends State<CartItem> {
                     Container(
                       height: 40.h,
                       decoration: BoxDecoration(
-                          color: greyFA,
                           borderRadius: BorderRadius.circular(10.h),
-                          border: Border.all(color: greyD0)),
+                          border: Border.all(color: greyFA)),
                       child: Row(
                         children: [
                           InkWell(
@@ -478,13 +481,29 @@ class _CartItemState extends State<CartItem> {
                       ),
                     ),
                     Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.delete_outline, color: primary),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                          height: 50.h,
+                          width: 50.h,
+                          child: Padding(
+                            padding: EdgeInsets.all(10.h),
+                            child: Picture(
+                              getAssetIcon("delete.svg"),
+                            ),
+                          )),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.favorite_border, color: primary),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                          height: 50.h,
+                          width: 50.h,
+                          child: Padding(
+                            padding: EdgeInsets.all(10.h),
+                            child: Picture(
+                              getAssetIcon("not_favorite.svg"),
+                            ),
+                          )),
                     ),
                   ],
                 ),
@@ -493,6 +512,55 @@ class _CartItemState extends State<CartItem> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class FreeShippingProgress extends StatelessWidget {
+  final double currentAmount;
+  final double requiredAmount;
+
+  const FreeShippingProgress({
+    super.key,
+    required this.currentAmount,
+    required this.requiredAmount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final double remaining = requiredAmount - currentAmount;
+    final double progress = (currentAmount / requiredAmount).clamp(0.0, 1.0);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text.rich(
+          TextSpan(
+            text: 'أنفق أكثر ',
+            style: getBoldGreyD012Style(),
+            children: [
+              TextSpan(
+                text: '${remaining.toInt()} جنيه ',
+                style: getMediumPrimary16Style(),
+              ),
+              const TextSpan(
+                text: 'للحصول على الشحن المجاني!',
+              ),
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 10),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: LinearProgressIndicator(
+            value: progress,
+            minHeight: 10,
+            backgroundColor: Colors.grey.shade300,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+          ),
+        ),
+      ],
     );
   }
 }

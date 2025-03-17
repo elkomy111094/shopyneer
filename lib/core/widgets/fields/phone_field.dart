@@ -1,15 +1,15 @@
-import 'package:shopyneer/config/theme/consts.dart';
-import 'package:shopyneer/core/utils/media_query_values.dart';
-import 'package:shopyneer/core/widgets/picture.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:shopyneer/core/utils/media_query_values.dart';
+import 'package:shopyneer/core/widgets/picture.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/consts.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/colors.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/get_asset_path.dart';
 import '../../utils/vaildData/valid_data.dart';
 
@@ -65,6 +65,7 @@ class _PhoneFieldState extends State<PhoneField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: getBoldPrimary14Style(),
       controller: widget.controller,
       focusNode: widget.focusNode,
       textDirection: TextDirection.ltr,
@@ -89,7 +90,7 @@ class _PhoneFieldState extends State<PhoneField> {
       validator: validate,
       decoration: InputDecoration(
         fillColor: Colors.white,
-
+        hintStyle: getRegularGrey12Style(),
         suffixIcon: Padding(
           padding: EdgeInsets.only(
             top: 8.h,
@@ -200,7 +201,7 @@ class _PhoneFieldState extends State<PhoneField> {
         hintText: Loc.phone_number(),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: primary.withOpacity(0.1),
+            color: primary,
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(
@@ -210,7 +211,7 @@ class _PhoneFieldState extends State<PhoneField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: primary.withOpacity(0.1),
+            color: greyFA,
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(
@@ -218,6 +219,25 @@ class _PhoneFieldState extends State<PhoneField> {
             ),
           ),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: primary,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: red,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(
+              5,
+            ),
+          ),
+        ),
+        errorStyle: getBoldGreyD012Style().copyWith(color: Colors.red),
         labelStyle: getRegularBlack14Style(),
         // prefixIcon: Container(
         //   width: 60.w,

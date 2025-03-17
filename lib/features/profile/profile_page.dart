@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
+import 'package:shopyneer/core/widgets/dot_seperator.dart';
 import 'package:shopyneer/core/widgets/elevated_button.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,14 +24,11 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: greyFA, // Light background color
-
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
-            decoration: BoxDecoration(
-              color: greyFA,
-            ),
+            decoration: BoxDecoration(),
             child: Column(
               children: [
                 Container(
@@ -42,25 +40,44 @@ class ProfilePage extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        CircleAvatar(
-                          radius: 25.h,
-                          child: Text("EM"), // User initials
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: primary.withOpacity(.1),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.h),
+                            child: CircleAvatar(
+                              radius: 25.h,
+                              backgroundColor: primary,
+                              child: Text("EM",
+                                  style:
+                                      getVBoldWhite14Style()), // User initials
+                            ),
+                          ),
                         ),
                         SizedBox(width: 10),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'أهلاً إسلام',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              Row(
+                                children: [
+                                  Text(
+                                    'أهلاً',
+                                    style: getBoldBlack12Style(),
+                                  ),
+                                  Gap(5.w),
+                                  Text(
+                                    'إسلام',
+                                    style: getBoldPrimary16Style(),
+                                  ),
+                                ],
                               ),
                               Gap(5.h),
                               Text(
                                 'elkomy.dev@gmail.com',
-                                style:
-                                    TextStyle(fontSize: 14, color: Colors.grey),
+                                style: getRegularGrey12Style(),
                               ),
                             ],
                           ),
@@ -69,7 +86,7 @@ class ProfilePage extends StatelessWidget {
                           onPressed: () {
                             Nav.editProfilePage(context);
                           },
-                          child: Text('تعديل'),
+                          child: Text('تعديل', style: getBoldPrimary16Style()),
                         ),
                       ],
                     ),
@@ -78,14 +95,15 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20.h),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: SingleChildScrollView(
+                padding: EdgeInsets.zero,
                 child: Column(
                   children: [
                     GridView(
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -99,10 +117,10 @@ class ProfilePage extends StatelessWidget {
                             onTap: () {
                           Nav.ordersPage(context: context);
                         }, Icons.shopping_cart),
-                        _buildProfileTile(
-                            'المرتجعات',
-                            subTitle: "0 قيد المراجعه",
-                            Icons.history),
+                        _buildProfileTile('المرتجعات',
+                            subTitle: "0 قيد المراجعه", onTap: () {
+                          Nav.returnsPage(context: context);
+                        }, Icons.history),
                         _buildProfileTile(
                             'المفضلة',
                             subTitle: "0 منتجات",
@@ -110,31 +128,22 @@ class ProfilePage extends StatelessWidget {
                           Nav.favoritesPage(context);
                         }),
                         _buildProfileTile(
-                            'رصيد شوبينير',
-                            subTitle: "0.00  ج.م",
-                            Icons.wallet),
+                            'العناوين', Icons.location_on_outlined, onTap: () {
+                          Nav.addressesPage(context);
+                        }),
                       ],
                     ),
-                    Gap(20.h),
+                    DotSeparator(),
 
                     Container(
                       decoration: BoxDecoration(color: Colors.white),
                       child: Column(
                         children: [
                           /* _buildListTile('شاهدته مؤخرا', Icons.remove_red_eye_outlined),*/
-                          _buildListTile('العناوين', Icons.location_on,
-                              ontap: () {
-                            Nav.addressesPage(context);
-                          }),
-                          _buildListTile('الدفع', Icons.payment, ontap: () {
-                            Nav.paymentMethodsPage(context);
-                          }),
-                          _buildListTile('طلبات الضمان', Icons.security),
-                          _buildListTile('QR كود', Icons.qr_code),
+
                           _buildListTile('عن التطبيق', Icons.info_outline,
                               ontap: () async {
-                            await launch(
-                                "https://shopyneer.com/pages/about-us");
+                            Nav.aboutAppPage(context);
                           }),
                           _buildListTile('خدمة العملاء', Icons.support,
                               ontap: () async {
@@ -142,7 +151,7 @@ class ProfilePage extends StatelessWidget {
                           }),
                           _buildListTile('الأسئله الشائعه', Icons.question_mark,
                               ontap: () async {
-                            await launch("https://shopyneer.com/pages/faqs");
+                            Nav.commonQuestionsPage(context);
                           }),
                           _buildListTile('التنبيهات', Icons.notifications,
                               ontap: () {
@@ -151,8 +160,6 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    SizedBox(height: 10),
 
                     // Settings Section
                     /*         _buildSectionHeader('الإعدادات'),
@@ -168,12 +175,33 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
               */
-                    SizedBox(height: 20),
 
-                    // Logout Button
+                    _buildListTile('سياسة الخصوصيه', Icons.security,
+                        ontap: () async {
+                      Nav.privacyPolicyPage(context: context);
+                    }),
+                    _buildListTile('الشروط والأحكام', Icons.file_copy,
+                        ontap: () async {
+                      Nav.termsAndConditionPage(context: context);
+                    }),
+                    _buildListTile('سياسة الشحن', Icons.delivery_dining,
+                        ontap: () async {
+                      Nav.shippingPolicyPage(context: context);
+                    }),
+                    _buildListTile('سياسة الإسترجاع', Icons.keyboard_return,
+                        ontap: () async {
+                      Nav.returnPolicyPage(context: context);
+                    }),
+
+                    _buildListTile('بيع علي شوبينير', Icons.money,
+                        ontap: () async {
+                      Nav.beSellerPage(context);
+                    }),
+
+                    Gap(10.h),
                     CustomElevatedButton(
                       condition: true,
-                      buttonColor: Colors.black,
+                      buttonColor: Colors.red,
                       buttonIcon: Icon(
                         Icons.logout,
                         color: white,
@@ -182,31 +210,8 @@ class ProfilePage extends StatelessWidget {
                       width: 400.w,
                       buttonName: "تسجيل الخروج",
                     ),
-                    SizedBox(height: 20),
-                    _buildListTile('سياسة الخصوصيه', Icons.security,
-                        ontap: () async {
-                      await launch(
-                          "https://shopyneer.com/policies/privacy-policy");
-                    }),
-                    _buildListTile('الشروط والأحكام', Icons.file_copy,
-                        ontap: () async {
-                      await launch(
-                          "https://shopyneer.com/policies/terms-of-service");
-                    }),
-                    _buildListTile('سياسة الشحن', Icons.delivery_dining,
-                        ontap: () async {
-                      await launch(
-                          "https://shopyneer.com/policies/shipping-policy");
-                    }),
-                    _buildListTile('سياسة الإسترجاع', Icons.keyboard_return,
-                        ontap: () async {
-                      await launch(
-                          "https://shopyneer.com/policies/refund-policy");
-                    }),
+                    DotSeparator(),
 
-                    SizedBox(height: 20),
-
-                    // Footer Section
                     Column(
                       children: [
                         TextButton(
@@ -285,8 +290,9 @@ class ProfilePage extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
+          border: Border.all(color: primary.withOpacity(.1)),
           color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(10.h),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -332,17 +338,29 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildListTile(String title, IconData icon, {void Function()? ontap}) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.h),
+      padding: EdgeInsets.symmetric(vertical: 5.h),
       child: Card(
-        elevation: 10,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.h)),
+        elevation: 0,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.h),
+            side: BorderSide(color: primary.withOpacity(.1))),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.h),
           child: ListTile(
             leading: Icon(icon, color: primary),
-            title: Text(title),
-            trailing: Icon(Icons.chevron_right),
+            title: Text(title, style: getBoldBlack12Style()),
+            trailing: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: primary.withOpacity(.1)),
+              child: Padding(
+                padding: EdgeInsets.all(10.h),
+                child: Icon(
+                  Icons.chevron_right,
+                  color: primary,
+                ),
+              ),
+            ),
             onTap: ontap,
           ),
         ),

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/colors.dart';
 
 class LocalNotificationService {
   late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -13,13 +13,16 @@ class LocalNotificationService {
   LocalNotificationService() {
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('notification_icon'); // Ensure you have the icon in the drawable folder
+        AndroidInitializationSettings(
+            'notification_icon'); // Ensure you have the icon in the drawable folder
 
-    final DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings(
+    final DarwinInitializationSettings initializationSettingsIOS =
+        DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
-      onDidReceiveLocalNotification: (id, title, body, payload) => handleNotificationClick(payload),
+      onDidReceiveLocalNotification: (id, title, body, payload) =>
+          handleNotificationClick(payload),
     );
     InitializationSettings initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
@@ -39,14 +42,16 @@ class LocalNotificationService {
 
   void requestPermissions() {
     flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
           alert: true,
           badge: true,
           sound: true,
         );
     flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            MacOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
           alert: true,
           badge: true,
@@ -70,7 +75,8 @@ class LocalNotificationService {
   void scheduleDailyNotification() async {
     debugPrint('called scheduleDailyNotification');
     requestExactAlarmPermission();
-    const AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
       'daily notification channel id',
       'daily notification channel name',
       channelDescription: 'Daily notification description',
@@ -80,7 +86,8 @@ class LocalNotificationService {
       icon: 'notification_icon',
       showWhen: false,
     );
-    const DarwinNotificationDetails iOSPlatformChannelSpecifics = DarwinNotificationDetails(
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -99,8 +106,10 @@ class LocalNotificationService {
       _nextInstanceOfNinePM(),
       platformChannelSpecifics,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      matchDateTimeComponents: DateTimeComponents.time, // Ensures it repeats daily
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents:
+          DateTimeComponents.time, // Ensures it repeats daily
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
@@ -109,7 +118,8 @@ class LocalNotificationService {
       tz.local,
     );
     debugPrint('now: $now');
-    tz.TZDateTime scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, now.day, 21);
+    tz.TZDateTime scheduledDate =
+        tz.TZDateTime(tz.local, now.year, now.month, now.day, 21);
     if (scheduledDate.isBefore(now)) {
       debugPrint('isBefore');
       scheduledDate = scheduledDate.add(
@@ -121,7 +131,8 @@ class LocalNotificationService {
   }
 
   void sendImmediateNotification() async {
-    const AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
       'immediate notification channel id',
       'immediate notification channel name',
       icon: 'notification_icon',
@@ -131,13 +142,15 @@ class LocalNotificationService {
       priority: Priority.high,
       showWhen: false,
     );
-    const DarwinNotificationDetails iOSPlatformChannelSpecifics = DarwinNotificationDetails(
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
     );
-    const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
+    const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.show(
       0,

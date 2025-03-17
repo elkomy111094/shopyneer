@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../../config/theme/colors.dart';
 import '../../utils/vaildData/valid_data.dart';
 
 class OtpField extends StatelessWidget {

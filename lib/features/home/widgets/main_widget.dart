@@ -1,5 +1,5 @@
-import 'package:shopyneer/config/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
 class MainWidget extends StatelessWidget {

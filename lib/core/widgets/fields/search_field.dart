@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/colors.dart';
 import '../../utils/get_asset_path.dart';
 
 class SearchField extends StatefulWidget {

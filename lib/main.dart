@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopyneer/config/theme/theme.dart';
 import 'package:shopyneer/core/app_bloc_observer.dart';
 import 'package:shopyneer/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:shopyneer/core/widgets/parent_widget.dart';
@@ -85,7 +84,7 @@ class MyApp extends StatelessWidget {
           create: (context) => getIt.get<ProfileBloc>(),
         ),
         BlocProvider<HomeCubit>(
-          create: (context) => getIt.get<HomeCubit>(),
+          create: (context) => getIt.get<HomeCubit>()..getGeneralProducts(),
         ),
       ],
       child: EasyLocalization(
@@ -99,21 +98,18 @@ class MyApp extends StatelessWidget {
         child: SizeConfigInit(
           referenceHeight: 926,
           referenceWidth: 428,
-          builder: (context, orientation) => ParentWidget(
-            child: MaterialApp(
-              title: 'Amalla',
-              theme: buildAppTheme(),
-              debugShowCheckedModeBanner: false,
-              navigatorKey: Nav.mainNavKey,
-              navigatorObservers: [NavObs('MAIN')],
-              localizationsDelegates: [
-                CountryLocalizations.delegate,
-                ...context.localizationDelegates
-              ],
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              home: const ParentWidget(child: MainLayoutPage()),
-            ),
+          builder: (context, orientation) => MaterialApp(
+            title: 'Shopyneer',
+            debugShowCheckedModeBanner: false,
+            navigatorKey: Nav.mainNavKey,
+            navigatorObservers: [NavObs('MAIN')],
+            localizationsDelegates: [
+              CountryLocalizations.delegate,
+              ...context.localizationDelegates
+            ],
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            home: const ParentWidget(child: MainLayoutPage()),
           ),
         ),
       ),

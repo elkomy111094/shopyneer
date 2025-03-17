@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/vaildData/valid_data.dart';
 
 class PlaceOfBirthField extends StatelessWidget {
@@ -46,7 +46,8 @@ class PlaceOfBirthField extends StatelessWidget {
         onClicked.call();
       },
       readOnly: readOnly,
-      textInputAction: confirm == null ? TextInputAction.next : TextInputAction.done,
+      textInputAction:
+          confirm == null ? TextInputAction.next : TextInputAction.done,
       autofillHints: const [
         AutofillHints.name,
         AutofillHints.middleName,
@@ -58,7 +59,7 @@ class PlaceOfBirthField extends StatelessWidget {
       ],
       validator: (value) {
         return null;
-      
+
         // final result = validate(value);
         // onValidated?.call(result == null);
         // return result;

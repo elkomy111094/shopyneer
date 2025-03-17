@@ -6,11 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shopyneer/config/navigation/nav.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
 import 'package:shopyneer/core/getit_service/getit_service.dart';
 import 'package:shopyneer/core/paramaters/update_profile_parameters.dart';
 import 'package:shopyneer/core/utils/get_asset_path.dart';
+import 'package:shopyneer/core/widgets/custom_app_bar.dart';
 import 'package:shopyneer/core/widgets/elevated_button.dart';
 import 'package:shopyneer/core/widgets/fields/date_field.dart';
 import 'package:shopyneer/core/widgets/fields/email_field.dart';
@@ -21,6 +20,8 @@ import 'package:shopyneer/core/widgets/picture.dart';
 import 'package:shopyneer/core/widgets/snack_bar.dart';
 import 'package:shopyneer/features/profile/profile_bloc/profile_bloc.dart';
 import 'package:shopyneer/features/profile/profile_bloc/profile_state.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../config/localization/loc_keys.dart';
@@ -118,174 +119,65 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          toolbarHeight: 75.h,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: CircleAvatar(
-              radius: 20.h,
-              backgroundColor: Colors.grey.withOpacity(.2),
-              child: Icon(
-                Icons.arrow_back,
-                color: Theme.of(context).primaryColor,
-                size: 20.sp,
-              ),
-            ),
-          ),
-          centerTitle: false,
-          title: Text(
-            Loc.editProfile(),
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          backgroundColor: Colors.white,
-        ),
+        backgroundColor: Color(0xffffffff),
+        appBar: GeneralAppBar(routeName: "تعديل الملف الشخصي"),
         body: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (context, state) {
-            return Stack(
-              fit: StackFit.expand,
+            return Column(
               children: [
-                Column(
-                  children: [
-                    /*Center(
-                      child: SizedBox(
-                        width: 100.h,
-                        height: 100.h,
-                        child: Stack(
-                          children: [
-                            TweenAnimationBuilder(
-                              duration: const Duration(milliseconds: 700),
-                              tween: Tween<double>(
-                                  begin: 0.h, end: 100.h), // Scale animation
-                              builder: (context, double size, child) {
-                                return DottedBorder(
-                                  color: primary, // Border color
-                                  strokeWidth: 2, // Width of the border
-                                  dashPattern: const [
-                                    8,
-                                    3
-                                  ], // Length of the dash and space between dashes
-                                  borderType:
-                                      BorderType.RRect, // Rounded border
-                                  radius: const Radius.circular(
-                                      1000), // Rounded corners radius
-                                  child: Container(
-                                    width: 100,
-                                    height: 100,
-                                    padding: EdgeInsets.all(2.h),
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: ClipOval(
-                                      child: pickedFile == null
-                                          ? image != ""
-                                              ? Picture(
-                                                  "https://worker.bnoop.net/$image",
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : Picture(
-                                                  getAssetImage("user.png"))
-                                          : Picture(
-                                              pickedFile!.path,
-                                              fit: BoxFit.cover,
-                                            ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Nav.imagePickerBottomSheet(
-                                    context: context,
-                                    content: buildImagePickerContent(),
-                                  );
-                                },
-                                child: Container(
-                                  width: 40.h,
-                                  height: 40.h,
-                                  decoration: BoxDecoration(
-                                    color: primary,
-                                    borderRadius: BorderRadius.circular(100.h),
-                                  ),
-                                  child: Center(
-                                    child: Picture(
-                                      getAssetIcon("camera.svg"),
-                                      color: white,
-                                    ),
-                                  ),
-                                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          controller: _scrollController,
+                          child: Padding(
+                            padding: EdgeInsets.all(16.h),
+                            child: Form(
+                              key: _updateKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  buildProfileFormFields(),
+                                ],
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),*/
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: SingleChildScrollView(
-                              controller: _scrollController,
-                              child: Padding(
-                                padding: EdgeInsets.all(16.h),
-                                child: Form(
-                                  key: _updateKey,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Divider(
-                                          thickness: .1,
-                                          height: 40.h,
-                                          color: greyEE),
-                                      buildProfileFormFields(),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(16.h),
-                            child: BlocConsumer<ProfileBloc, ProfileState>(
-                              listener: (context, state) {
-                                if (state is UpdateProfileDataSuccessState) {
-                                  SnackBarBuilder.showFeedBackMessage(
-                                    context,
-                                    Loc.dataSavedSuccessfully(),
-                                    isSuccess: true,
-                                  );
-                                  Nav.mainLayout(context);
-                                } else if (state
-                                    is UpdateProfileDataFailedState) {
-                                  SnackBarBuilder.showFeedBackMessage(
-                                    context,
-                                    state.error,
-                                    isSuccess: false,
-                                  );
-                                }
+                      Padding(
+                        padding: EdgeInsets.all(16.h),
+                        child: BlocConsumer<ProfileBloc, ProfileState>(
+                          listener: (context, state) {
+                            if (state is UpdateProfileDataSuccessState) {
+                              SnackBarBuilder.showFeedBackMessage(
+                                context,
+                                Loc.dataSavedSuccessfully(),
+                                isSuccess: true,
+                              );
+                              Nav.mainLayout(context);
+                            } else if (state is UpdateProfileDataFailedState) {
+                              SnackBarBuilder.showFeedBackMessage(
+                                context,
+                                state.error,
+                                isSuccess: false,
+                              );
+                            }
+                          },
+                          builder: (context, state) {
+                            return CustomElevatedButton(
+                              condition:
+                                  state is! UpdateProfileDataLoadingState,
+                              onTap: () {
+                                if (_updateKey.currentState!.validate()) {}
                               },
-                              builder: (context, state) {
-                                return CustomElevatedButton(
-                                  condition:
-                                      state is! UpdateProfileDataLoadingState,
-                                  onTap: () {
-                                    if (_updateKey.currentState!.validate()) {}
-                                  },
-                                  buttonName: Loc.save(),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                              buttonName: Loc.save(),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 state is UpdateProfileDataLoadingState?
                     ? GestureDetector(

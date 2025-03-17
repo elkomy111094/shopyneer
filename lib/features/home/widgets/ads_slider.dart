@@ -5,20 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:shopyneer/core/widgets/loading_widget.dart';
 import 'package:shopyneer/core/widgets/no_data_widget.dart';
 import 'package:shopyneer/features/home/models/advertising_response_model.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../../config/theme/colors.dart';
 
 class AdsSlider extends StatefulWidget {
   AdsSlider({super.key, required this.imageUrls});
   final List<Advertise> imageUrls;
-  final List<String> fakeUrls = [
-    "https://shopyneer.com/cdn/shop/files/55541425a1dab62315d6b31edc53091a.jpg?v=1731094370&width=2000",
-    "https://shopyneer.com/cdn/shop/files/copy_0b3c20ac-e028-474c-b100-d572d5f23633.jpg?v=1730359256&width=2000",
-    "https://shopyneer.com/cdn/shop/files/copy_29c9774f-e95f-4466-87bb-d850753affc9.jpg?v=1730359279&width=2000",
-    "https://shopyneer.com/cdn/shop/files/6.jpg?v=1730189751&width=2000",
-  ];
 
   @override
   State<AdsSlider> createState() => _AdsSliderState();
@@ -80,13 +73,13 @@ class _AdsSliderState extends State<AdsSlider> {
                         margin: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: ClipRRect(
                           child: CachedNetworkImage(
-                            imageUrl: "${widget.fakeUrls[index]}",
+                            imageUrl: "${widget.imageUrls[index].image}",
                             placeholder: (context, url) => const Center(
                               child: LoadingWidget(),
                             ),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
                         ),
                       );

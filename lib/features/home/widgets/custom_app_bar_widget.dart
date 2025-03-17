@@ -1,20 +1,20 @@
-import 'package:shopyneer/core/widgets/custom_dialog.dart';
-import 'package:shopyneer/core/getit_service/getit_service.dart';
-import 'package:shopyneer/config/localization/loc_keys.dart';
-import 'package:shopyneer/config/navigation/nav.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
-import 'package:shopyneer/core/utils/get_asset_path.dart';
-import 'package:shopyneer/core/widgets/loading_widget.dart';
-import 'package:shopyneer/core/widgets/my_custom_icon.dart';
-import 'package:shopyneer/core/widgets/picture.dart';
-import 'package:shopyneer/features/profile/profile_bloc/profile_bloc.dart';
-import 'package:shopyneer/features/profile/profile_bloc/profile_state.dart';
-import 'package:shopyneer/features/Auth/repo/auth_repo.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:shopyneer/config/localization/loc_keys.dart';
+import 'package:shopyneer/config/navigation/nav.dart';
+import 'package:shopyneer/core/getit_service/getit_service.dart';
+import 'package:shopyneer/core/utils/get_asset_path.dart';
+import 'package:shopyneer/core/widgets/custom_dialog.dart';
+import 'package:shopyneer/core/widgets/loading_widget.dart';
+import 'package:shopyneer/core/widgets/my_custom_icon.dart';
+import 'package:shopyneer/core/widgets/picture.dart';
+import 'package:shopyneer/features/Auth/repo/auth_repo.dart';
+import 'package:shopyneer/features/profile/profile_bloc/profile_bloc.dart';
+import 'package:shopyneer/features/profile/profile_bloc/profile_state.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSize {

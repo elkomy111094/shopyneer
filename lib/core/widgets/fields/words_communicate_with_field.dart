@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/vaildData/valid_data.dart';
 
 class WordsCommunicateWithField extends StatelessWidget {
@@ -41,7 +41,8 @@ class WordsCommunicateWithField extends StatelessWidget {
       maxLines: maxLines,
       onChanged: onChange,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      textInputAction: confirm == null ? TextInputAction.next : TextInputAction.done,
+      textInputAction:
+          confirm == null ? TextInputAction.next : TextInputAction.done,
       autofillHints: const [
         AutofillHints.name,
         AutofillHints.middleName,

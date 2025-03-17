@@ -7,14 +7,14 @@ import 'package:gap/gap.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shopyneer/config/localization/loc_keys.dart';
 import 'package:shopyneer/config/navigation/nav.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:shopyneer/core/utils/get_asset_path.dart';
 import 'package:shopyneer/core/widgets/loading_widget.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
 import 'package:shopyneer/core/widgets/snack_bar.dart';
 import 'package:shopyneer/features/Auth/otp/otp_bloc/otp_bloc.dart';
 import 'package:shopyneer/features/Auth/otp/otp_bloc/otp_state.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../../core/getit_service/getit_service.dart';

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
 import 'package:shopyneer/core/widgets/animated_dropdown_list.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
 import 'package:shopyneer/features/home/models/category_model.dart';
 import 'package:shopyneer/features/home/widgets/product_widget.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
+import '../../core/utils/get_asset_path.dart';
 import '../../core/widgets/custom_app_bar.dart';
 import '../home/widgets/animated_search_field.dart';
 
@@ -70,229 +71,317 @@ class OfferPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            CustomAppBar(
-              routeName: OfferTitle,
-              onBackPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                        height: 250.h,
-                        width: double.infinity,
-                        child: Picture(
-                          OfferImg,
-                          fit: BoxFit.fill,
-                        )),
-                    Gap(10.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+    return Scaffold(
+      body: Column(
+        children: [
+          GeneralAppBar(
+            routeName: OfferTitle,
+            onBackPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                      height: 250.h,
+                      width: double.infinity,
+                      child: Picture(
+                        OfferImg,
+                        fit: BoxFit.fill,
+                      )),
+                  Gap(10.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Gap(10.w),
+                      Expanded(
+                        child: AnimatedSearchField(),
+                      ),
+                      Gap(10.w),
+                    ],
+                  ),
+                  Gap(10.h),
+                  Container(
+                    height: 60.h,
+                    color: greyFA,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.h, horizontal: 10.w),
                       children: [
                         Gap(10.w),
-                        Expanded(
-                          child: AnimatedSearchField(),
+                        Container(
+                          height: 30.h,
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.h)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 20.h,
+                                    height: 20.h,
+                                    child: Picture(
+                                      getAssetIcon("money.svg"),
+                                      width: 20.h,
+                                      height: 20.h,
+                                      color: Colors.black,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Gap(5.w),
+                                  Text(
+                                    "السعر",
+                                    style: getRegularBlack14Style(),
+                                  ),
+                                  Gap(10.w),
+                                  Icon(
+                                    Icons.arrow_downward_outlined,
+                                    size: 12.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                         Gap(10.w),
+                        Container(
+                          height: 30.h,
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.h)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 20.h,
+                                    height: 20.h,
+                                    child: Picture(
+                                      getAssetIcon("category.svg"),
+                                      width: 30.h,
+                                      height: 30.h,
+                                      color: Colors.black,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Gap(5.w),
+                                  Text(
+                                    "التصنيف",
+                                    style: getRegularBlack14Style(),
+                                  ),
+                                  Gap(10.w),
+                                  Icon(
+                                    Icons.arrow_downward_outlined,
+                                    size: 12.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(10.w),
+                        Container(
+                          height: 30.h,
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.h)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 20.h,
+                                    height: 20.h,
+                                    child: Picture(
+                                      getAssetIcon("brand.svg"),
+                                      width: 20.h,
+                                      height: 20.h,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Gap(5.w),
+                                  Text(
+                                    "البراند",
+                                    style: getRegularBlack14Style(),
+                                  ),
+                                  Gap(10.w),
+                                  Icon(
+                                    Icons.arrow_downward_outlined,
+                                    size: 12.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(10.w),
+                        Container(
+                          height: 30.h,
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.h)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 20.h,
+                                    height: 20.h,
+                                    child: Picture(
+                                      getAssetIcon("available.svg"),
+                                      width: 20.h,
+                                      height: 20.h,
+                                      color: Colors.black,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Gap(5.w),
+                                  Text(
+                                    "توافر المنتج",
+                                    style: getRegularBlack14Style(),
+                                  ),
+                                  Gap(10.w),
+                                  Icon(
+                                    Icons.arrow_downward_outlined,
+                                    size: 12.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(10.w),
+                        Container(
+                          height: 30.h,
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.h)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 20.h,
+                                    height: 20.h,
+                                    child: Picture(
+                                      getAssetIcon("color.svg"),
+                                      width: 20.h,
+                                      height: 20.h,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Gap(5.w),
+                                  Text(
+                                    "اللون",
+                                    style: getRegularBlack14Style(),
+                                  ),
+                                  Gap(10.w),
+                                  Icon(
+                                    Icons.arrow_downward_outlined,
+                                    size: 12.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(10.w),
+                        Container(
+                          height: 30.h,
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.h)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 20.h,
+                                    height: 20.h,
+                                    child: Picture(
+                                      getAssetIcon("rate.svg"),
+                                      width: 20.h,
+                                      height: 20.h,
+                                      color: Colors.black,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Gap(5.w),
+                                  Text(
+                                    "التقييم",
+                                    style: getRegularBlack14Style(),
+                                  ),
+                                  Gap(10.w),
+                                  Icon(
+                                    Icons.arrow_downward_outlined,
+                                    size: 12.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    Gap(10.h),
-                    Container(
-                      height: 60.h,
-                      color: greyFA,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10.h, horizontal: 10.w),
-                        children: [
-                          Gap(10.w),
-                          Container(
-                            height: 30.h,
-                            child: Card(
-                              color: primary.withOpacity(.1),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.h)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "السعر",
-                                      style: getRegularBlack14Style(),
-                                    ),
-                                    Gap(10.w),
-                                    Icon(Icons.arrow_downward_outlined),
-                                  ],
-                                ),
-                              ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    color: greyFA,
+                    child: Column(
+                      children: [
+                        Gap(10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  child: SimpleDropdown()),
                             ),
-                          ),
-                          Gap(10.w),
-                          Container(
-                            height: 30.h,
-                            child: Card(
-                              color: primary.withOpacity(.1),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.h)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "التصنيف",
-                                      style: getRegularBlack14Style(),
-                                    ),
-                                    Gap(10.w),
-                                    Icon(Icons.arrow_downward_outlined),
-                                  ],
-                                ),
-                              ),
+                          ],
+                        ),
+                        Gap(10.h),
+                        Padding(
+                          padding: EdgeInsets.all(5.h),
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2, // Number of columns
+                              childAspectRatio: 30 / 71,
+                              crossAxisSpacing: 8.0,
+                              mainAxisSpacing: 8.0,
                             ),
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              return MainProductWidget(
+                                imgUrl:
+                                    "https://sourcebeauty.com/cdn/shop/files/Manella-28-Dark-Pink-Source-Beauty-Egypt_1000x.png?v=1706693700",
+                              );
+                            },
                           ),
-                          Gap(10.w),
-                          Container(
-                            height: 30.h,
-                            child: Card(
-                              color: primary.withOpacity(.1),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.h)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "البراند",
-                                      style: getRegularBlack14Style(),
-                                    ),
-                                    Gap(10.w),
-                                    Icon(Icons.arrow_downward_outlined),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Gap(10.w),
-                          Container(
-                            height: 30.h,
-                            child: Card(
-                              color: primary.withOpacity(.1),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.h)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "توافر المنتج",
-                                      style: getRegularBlack14Style(),
-                                    ),
-                                    Gap(10.w),
-                                    Icon(Icons.arrow_downward_outlined),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Gap(10.w),
-                          Container(
-                            height: 30.h,
-                            child: Card(
-                              color: primary.withOpacity(.1),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.h)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "اللون",
-                                      style: getRegularBlack14Style(),
-                                    ),
-                                    Gap(10.w),
-                                    Icon(Icons.arrow_downward_outlined),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Gap(10.w),
-                          Container(
-                            height: 30.h,
-                            child: Card(
-                              color: primary.withOpacity(.1),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.h)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "التقييم",
-                                      style: getRegularBlack14Style(),
-                                    ),
-                                    Gap(10.w),
-                                    Icon(Icons.arrow_downward_outlined),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      width: double.infinity,
-                      color: greyFA,
-                      child: Column(
-                        children: [
-                          Gap(10.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 3,
-                                    child: SimpleDropdown()),
-                              ),
-                            ],
-                          ),
-                          Gap(10.h),
-                          Padding(
-                            padding: EdgeInsets.all(5.h),
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2, // Number of columns
-                                childAspectRatio: 30 / 71,
-                                crossAxisSpacing: 8.0,
-                                mainAxisSpacing: 8.0,
-                              ),
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                return MainProductWidget();
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

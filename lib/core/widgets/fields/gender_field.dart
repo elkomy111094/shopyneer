@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/colors.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/get_asset_path.dart';
 import '../../utils/vaildData/valid_data.dart';
 
@@ -60,7 +60,7 @@ class _GenderFieldState extends State<GenderField>
               child: TextFormField(
                 controller: widget.controller,
                 focusNode: widget.focusNode,
-                style: getRegularBlack16Style(),
+                style: getBoldPrimary14Style(),
                 onTapOutside: (event) => FocusScope.of(context).unfocus(),
                 onFieldSubmitted: widget.confirm,
                 textAlign: TextAlign.start,
@@ -81,12 +81,24 @@ class _GenderFieldState extends State<GenderField>
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: primary.withOpacity(0.1),
+                      color: greyFA,
                     ),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
                   ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: red,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        5,
+                      ),
+                    ),
+                  ),
+                  errorStyle:
+                      getBoldGreyD012Style().copyWith(color: Colors.red),
                   disabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: primary.withOpacity(0.1),
@@ -95,8 +107,17 @@ class _GenderFieldState extends State<GenderField>
                       Radius.circular(10),
                     ),
                   ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: primary,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
                   labelStyle: getRegularBlack14Style(),
                   enabled: false,
+                  hintStyle: getRegularGrey12Style(),
                   prefixIcon: Container(
                     width: 60.w,
                     margin: EdgeInsets.only(left: 10.w),
@@ -149,22 +170,14 @@ class _GenderFieldState extends State<GenderField>
               curve: Curves.easeInOut,
               child: counter.value
                   ? Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color:
-                                Colors.grey.withOpacity(0.05), // Shadow color
-                            spreadRadius: 0, // How far the shadow spreads
-                            blurRadius: 16, // How blurry the shadow is
-                          ),
-                        ],
-                      ),
+                      decoration: BoxDecoration(),
                       child: Padding(
                         padding: EdgeInsets.all(10.h),
                         child: SizedBox(
-                          height: 115.h,
+                          height: 170.h,
                           child: Card(
-                            shadowColor: grey4A,
+                            elevation: 0,
+                            shadowColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.h),
                             ),
@@ -184,7 +197,7 @@ class _GenderFieldState extends State<GenderField>
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 10.h),
+                                              vertical: 20.h, horizontal: 20.w),
                                           child: Text(
                                             Loc.male(),
                                             style: getRegularBlack16Style(),
@@ -208,7 +221,7 @@ class _GenderFieldState extends State<GenderField>
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 10.h),
+                                              vertical: 20.h, horizontal: 20.w),
                                           child: Text(
                                             Loc.female(),
                                             style: getRegularBlack16Style(),

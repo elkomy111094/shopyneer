@@ -1,5 +1,5 @@
-import 'package:shopyneer/config/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 
 extension TextThemeExtensions on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;

@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../../config/theme/colors.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/get_asset_path.dart';
 import '../../utils/vaildData/valid_data.dart';
 import '../picture.dart';
@@ -32,7 +32,7 @@ class DateField extends StatelessWidget {
       readOnly: true,
       onTapOutside: (event) => FocusScope.of(context).unfocus(),
       onFieldSubmitted: confirm,
-      style: getBoldBlue12Style(),
+      style: getBoldPrimary14Style(),
       onTap: onTap,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.emailAddress,
@@ -47,54 +47,73 @@ class DateField extends StatelessWidget {
         return result;
       },
       decoration: InputDecoration(
-        hintText: '17/09/2022',
-        alignLabelWithHint: true,
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: primary.withOpacity(0.1),
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(
-              10,
+          hintText: '17/09/2022',
+          alignLabelWithHint: true,
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: primary.withOpacity(0.1),
             ),
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: primary.withOpacity(0.1),
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(
-              10,
-            ),
-          ),
-        ),
-        labelStyle: getBoldBlue14Style(),
-        prefixIcon: Container(
-          width: 60.w,
-          margin: EdgeInsets.only(
-              left: context.locale.languageCode == 'en' ? 0 : 10.w,
-              right: context.locale.languageCode == 'en' ? 10.w : 0),
-          padding: EdgeInsets.all(12.w),
-          decoration: BoxDecoration(
-            color: primaryWithOpacity1,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(10.h),
-                bottomRight: Radius.circular(10.h)),
-            border: Border(
-              left: BorderSide(
-                color: primary.withOpacity(0.1),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(
+                10,
               ),
             ),
           ),
-          child: Picture(
-            getAssetIcon('date.svg'),
-            color: primary,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: primary.withOpacity(0.1),
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(
+                10,
+              ),
+            ),
           ),
-        ),
-        fillColor: Colors.white,
-        filled: true,
-      ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: red,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(
+                5,
+              ),
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: primary,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          errorStyle: getBoldGreyD012Style().copyWith(color: Colors.red),
+          labelStyle: getBoldBlue14Style(),
+          prefixIcon: Container(
+            width: 60.w,
+            margin: EdgeInsets.only(
+                left: context.locale.languageCode == 'en' ? 0 : 10.w,
+                right: context.locale.languageCode == 'en' ? 10.w : 0),
+            padding: EdgeInsets.all(12.w),
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10.h),
+                  bottomRight: Radius.circular(10.h)),
+              border: Border(
+                left: BorderSide(
+                  color: primary.withOpacity(0.1),
+                ),
+              ),
+            ),
+            child: Picture(
+              getAssetIcon('date.svg'),
+              color: primary,
+            ),
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          hintStyle: getRegularGrey12Style()),
     );
   }
 

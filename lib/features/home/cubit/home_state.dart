@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:shopyneer/core/utils/loading_state.dart';
 import 'package:shopyneer/features/home/models/advertising_response_model.dart';
-import 'package:equatable/equatable.dart';
+import 'package:shopyneer/features/home/models/products_general_response.dart';
 
 abstract class HomeState {
   const HomeState();
@@ -22,6 +23,20 @@ class HomeFailedState extends HomeState {
 class HomeSuccessState extends HomeState {
   final AdvertismentResponseModel advertismentResponseModel;
   const HomeSuccessState({required this.advertismentResponseModel});
+}
+
+class generalProductsLoadingState extends HomeState {
+  const generalProductsLoadingState();
+}
+
+class generalProductsFailedState extends HomeState {
+  final String? error;
+  generalProductsFailedState({required this.error});
+}
+
+class generalProductsSuccessState extends HomeState {
+  final GeneralProductsResponse generalProductsResponse;
+  generalProductsSuccessState({required this.generalProductsResponse});
 }
 
 class GetAdsDataState extends Equatable {

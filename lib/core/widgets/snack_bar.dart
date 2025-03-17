@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-
-import '../../config/theme/styles_manager.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 
 class SnackBarBuilder {
   static showFeedBackMessage(BuildContext context, String message,

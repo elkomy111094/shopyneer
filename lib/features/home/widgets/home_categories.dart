@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopyneer/config/navigation/nav.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
 import 'package:shopyneer/features/home/models/category_model.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 class HorizontalGridView extends StatelessWidget {
@@ -53,22 +52,60 @@ class CategoryCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: primary.withOpacity(.1),
-                shape: BoxShape.circle,
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(10.h),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(1000.h),
-                    child: Picture(
-                      category.imageUrl,
-                      fit: BoxFit.cover,
-                      height: double.infinity,
-                      width: double.infinity,
-                    )),
-              ),
+            child: Stack(
+              clipBehavior:
+                  Clip.none, // السماح للعناصر بالخروج خارج حدود الـ Stack
+              children: [
+                // إطار متحرك (Glow Effect) في حال كان العنصر Hot
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: category.title == 'فساتين'
+                        ? Border.all(
+                            color: Colors.redAccent, width: 2) // Border عند hot
+                        : Border.all(color: Colors.transparent, width: 0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(1.h),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(1000.h),
+                      child: Picture(
+                        category.imageUrl,
+                        fit: BoxFit.cover,
+                        height: double.infinity,
+                        width: double.infinity,
+                      ),
+                    ),
+                  ),
+                ),
+
+                // شريط "HOT" المائل
+                if (category.title == 'فساتين')
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Transform.rotate(
+                      angle: 0, // لإمالة الشريط
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 6.h, vertical: 6.h),
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 3)),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.local_fire_department,
+                                color: Colors.white,
+                                size: 14.sp), // أيقونة اللهب
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
           const SizedBox(height: 8),

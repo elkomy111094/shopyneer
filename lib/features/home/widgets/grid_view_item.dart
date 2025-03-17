@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 class GridViewItem extends StatelessWidget {
@@ -19,6 +19,7 @@ class GridViewItem extends StatelessWidget {
         children: [
           Card(
             elevation: 5,
+            color: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.h),
                 side: BorderSide(color: greyD0)),

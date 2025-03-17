@@ -1,7 +1,7 @@
-import 'package:shopyneer/config/theme/styles_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:shopyneer/core/utils/get_asset_path.dart';
 import 'package:shopyneer/core/widgets/picture.dart';
-import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 class NoDataWidget extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../../config/theme/colors.dart';
 import '../../utils/widget_utils.dart';
 
 class AppErrorWidget extends StatelessWidget {

@@ -1,19 +1,18 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:gap/gap.dart';
 import 'package:shopyneer/core/getit_service/getit_service.dart';
 import 'package:shopyneer/core/widgets/custom_app_bar.dart';
 import 'package:shopyneer/core/widgets/loading_widget.dart';
 import 'package:shopyneer/core/widgets/no_data_widget.dart';
 import 'package:shopyneer/features/contracts/cubit/contracts_cubit.dart';
 import 'package:shopyneer/features/contracts/widgets/contract_widget.dart';
-import 'package:shopyneer/features/mainLayout/main_layout.dart';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:gap/gap.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../config/localization/loc_keys.dart';
-import '../../config/theme/colors.dart';
 
 class ContractsPage extends StatefulWidget {
   const ContractsPage({super.key});
@@ -34,11 +33,9 @@ class _ContractsPageState extends State<ContractsPage> {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: Colors.white,
-            appBar: CustomAppBar(
+            appBar: GeneralAppBar(
               routeName: Loc.contracts(),
-              onBackPressed: () {
-                moveToSelectedIndex(0, context);
-              },
+              onBackPressed: () {},
             ),
             body: Column(
               children: [

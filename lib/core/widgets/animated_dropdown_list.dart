@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
 const List<Job> _list = [
@@ -23,6 +23,7 @@ class SimpleDropdown extends StatelessWidget {
           closedFillColor: Colors.black,
           hintStyle: getMediumWhite12Style(),
           headerStyle: getMediumWhite12Style(),
+          listItemStyle: getRegularBlack12Style(),
           closedSuffixIcon: Icon(
             Icons.arrow_downward_outlined,
             color: Colors.white,

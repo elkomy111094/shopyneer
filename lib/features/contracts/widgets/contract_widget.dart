@@ -2,10 +2,10 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shopyneer/config/localization/loc_keys.dart';
-import 'package:shopyneer/config/theme/colors.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:shopyneer/core/utils/extensions/date.dart';
 import 'package:shopyneer/features/contracts/models/contracts_response_model.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
 import '../../../config/navigation/nav.dart';

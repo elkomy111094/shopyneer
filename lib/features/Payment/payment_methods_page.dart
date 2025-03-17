@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:shopyneer/config/theme/colors.dart';
 import 'package:shopyneer/core/widgets/custom_app_bar.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
 
 class PaymentScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class PaymentScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            CustomAppBar(
+            GeneralAppBar(
               routeName: 'وسائل الدفع',
             ),
             Expanded(

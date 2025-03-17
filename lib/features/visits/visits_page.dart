@@ -8,14 +8,10 @@ import 'package:shopyneer/core/getit_service/getit_service.dart';
 import 'package:shopyneer/core/widgets/custom_app_bar.dart';
 import 'package:shopyneer/core/widgets/loading_widget.dart';
 import 'package:shopyneer/core/widgets/no_data_widget.dart';
-import 'package:shopyneer/features/mainLayout/main_layout.dart';
 import 'package:shopyneer/features/visits/cubit/visits_cubit.dart';
 import 'package:shopyneer/features/visits/widgets/visit_widget.dart';
-
+import 'package:shopyneer/shared/theme/colors.dart';
 import 'package:size_config/size_config.dart';
-
-import '../../config/theme/colors.dart';
-
 
 class VisitsPage extends StatefulWidget {
   const VisitsPage({super.key});
@@ -34,11 +30,9 @@ class _VisitsPageState extends State<VisitsPage> {
       child: BlocBuilder<VisitsCubit, VisitsState>(
         builder: (context, state) => Scaffold(
           backgroundColor: Colors.white,
-          appBar: CustomAppBar(
+          appBar: GeneralAppBar(
             routeName: Loc.visits(),
-            onBackPressed: () {
-              moveToSelectedIndex(0, context);
-            },
+            onBackPressed: () {},
           ),
           body: Column(
             children: [

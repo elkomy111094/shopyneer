@@ -1,12 +1,11 @@
-import 'package:shopyneer/config/localization/loc_keys.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
-import 'package:shopyneer/core/utils/extensions/date.dart';
-import 'package:shopyneer/features/visits/models/visits_response_model.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:shopyneer/config/localization/loc_keys.dart';
+import 'package:shopyneer/core/utils/extensions/date.dart';
+import 'package:shopyneer/features/visits/models/visits_response_model.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
-
-import '../../../config/theme/colors.dart';
 
 class VisitWidget extends StatelessWidget {
   final bool isFinished;

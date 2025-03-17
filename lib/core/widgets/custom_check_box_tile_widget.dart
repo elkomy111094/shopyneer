@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
-
-import '../../config/theme/colors.dart';
-import '../../config/theme/styles_manager.dart';
 
 class CustomCheckBoxTile extends StatelessWidget {
   const CustomCheckBoxTile(
-      {super.key, required this.onChangeValue, required this.value, this.checkBoxColor, required this.text});
+      {super.key,
+      required this.onChangeValue,
+      required this.value,
+      this.checkBoxColor,
+      required this.text});
 
   final Function(bool) onChangeValue;
   final bool value;

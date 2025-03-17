@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gap/gap.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../config/theme/colors.dart';
-import '../../config/theme/styles_manager.dart';
-
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar(
+class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const GeneralAppBar(
       {super.key,
       this.myColor,
       required this.routeName,
@@ -50,44 +48,80 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      toolbarHeight: 60.h,
-      title: Row(
+    return Container(
+      height: 140.h,
+      color: Color(0xffffffff),
+      child: Column(
         children: [
-          Text(
-            routeName,
-            style: getBoldPrimary16Style(),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top), // status bar height
+              color: Colors.white,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    height: 80.h,
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // Leading (Back Button)
+                        IconButton(
+                          onPressed: onBackPressed ??
+                              () => Navigator.of(context).pop(),
+                          icon: CircleAvatar(
+                            radius: 20.h,
+                            backgroundColor: primary.withOpacity(.1),
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: primary,
+                              size: 20.sp,
+                            ),
+                          ),
+                        ),
+
+                        // Title and Subtitle
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                routeName,
+                                style: getBoldBlack16Style(),
+                              ),
+                              SizedBox(width: 10.w),
+                              if (subTitle != null)
+                                Text(
+                                  subTitle ?? "",
+                                  style: getBoldPrimary16Style(),
+                                ),
+                            ],
+                          ),
+                        ),
+
+                        // Actions
+                        if (actions != null && actions!.isNotEmpty)
+                          Row(children: actions!)
+                        else
+                          SizedBox(
+                              width: 40.w), // To balance spacing if no actions
+                      ],
+                    ),
+                  ),
+                  // Bottom Widget if needed
+                  if (bottomWidget != null) bottomWidget!,
+                ],
+              ),
+            ),
           ),
-          Gap(10.w),
-          Text(
-            subTitle ?? "",
-            style: getBoldPrimary16Style(),
-          ),
+          Divider(
+            color: greyFA,
+          )
         ],
       ),
-      leading: IconButton(
-        onPressed: onBackPressed ??
-            () {
-              Navigator.of(context).pop();
-            },
-        icon: CircleAvatar(
-          radius: 20.h,
-          backgroundColor: Colors.grey.withOpacity(.2),
-          child: Icon(
-            Icons.arrow_back,
-            color: Theme.of(context).primaryColor,
-            size: 20.sp,
-          ),
-        ),
-      ),
-      centerTitle: false,
-      systemOverlayStyle: systemUiOverlayStyle,
-      actions: actions,
-      bottom: bottomWidget,
-      elevation: 0.5,
-      flexibleSpace: flexibleSpace,
-      automaticallyImplyLeading: automaticallyImplyLeading ?? false,
-      backgroundColor: myColor ?? white,
     );
   }
 }

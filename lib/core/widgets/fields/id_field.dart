@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 
 import '../../../config/localization/loc_keys.dart';
-import '../../../config/theme/colors.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../utils/vaildData/valid_data.dart';
 
 class IDField extends StatelessWidget {
@@ -49,7 +49,7 @@ class IDField extends StatelessWidget {
       autofocus: autoFocus,
       textDirection: TextDirection.ltr,
       textInputAction:
-      confirm == null ? TextInputAction.next : TextInputAction.done,
+          confirm == null ? TextInputAction.next : TextInputAction.done,
       maxLength: 10,
       validator: (value) {
         final result = validate(value);

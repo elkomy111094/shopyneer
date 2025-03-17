@@ -14,10 +14,10 @@ import 'package:shopyneer/core/widgets/picture.dart';
 import 'package:shopyneer/features/Auth/login/widget/main_view_widget.dart';
 import 'package:shopyneer/features/Auth/register/register_bloc/register_bloc.dart';
 import 'package:shopyneer/features/Auth/register/register_bloc/register_state.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../../config/theme/colors.dart';
-import '../../../config/theme/styles_manager.dart';
 import '../../../core/paramaters/register_paramaters.dart';
 import '../../../core/utils/get_asset_path.dart';
 import '../../../core/widgets/elevated_button.dart';

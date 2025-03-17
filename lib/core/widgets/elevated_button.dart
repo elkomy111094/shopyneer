@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopyneer/shared/theme/colors.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 import 'package:size_config/size_config.dart';
 
-import '../../config/theme/colors.dart';
-import '../../config/theme/styles_manager.dart';
 import 'loading_widget.dart';
 
 class CustomElevatedButton extends StatelessWidget {
@@ -61,7 +61,7 @@ class CustomElevatedButton extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       buttonName,
-                      style: buttonTextStyle ?? getW700White16Style(),
+                      style: buttonTextStyle ?? getW700White14Style(),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),

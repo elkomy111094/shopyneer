@@ -5,6 +5,7 @@ import 'package:shopyneer/core/utils/widget_utils.dart';
 import 'package:shopyneer/core/widgets/delete_bottom_sheet.dart';
 import 'package:shopyneer/core/widgets/logout_bottom_sheet.dart';
 import 'package:shopyneer/core/widgets/must_login_bottom_sheet.dart';
+import 'package:shopyneer/features/%20about/about_app.dart';
 import 'package:shopyneer/features/Addresses/add_address.dart';
 import 'package:shopyneer/features/Addresses/edit_address_page.dart';
 import 'package:shopyneer/features/Addresses/my_addresses_page.dart';
@@ -14,8 +15,11 @@ import 'package:shopyneer/features/Auth/otp/register_otp_page.dart';
 import 'package:shopyneer/features/Auth/register/register_page.dart';
 import 'package:shopyneer/features/Categories/category_page.dart';
 import 'package:shopyneer/features/MyOrders/order_details.dart';
+import 'package:shopyneer/features/MyOrders/order_tracking_page.dart';
 import 'package:shopyneer/features/MyOrders/orders_page.dart';
 import 'package:shopyneer/features/Payment/payment_methods_page.dart';
+import 'package:shopyneer/features/Shopping_Cart/checkout_page.dart';
+import 'package:shopyneer/features/Terms_and_conditions/terms_and_conditions_page.dart';
 import 'package:shopyneer/features/brands/barnd_page.dart';
 import 'package:shopyneer/features/favorites/favorites_page.dart';
 import 'package:shopyneer/features/mainLayout/main_layout.dart';
@@ -23,8 +27,15 @@ import 'package:shopyneer/features/notifications/notification_page.dart';
 import 'package:shopyneer/features/offers/offers_page.dart';
 import 'package:shopyneer/features/product_details/product_details_page.dart';
 import 'package:shopyneer/features/profile/edit_profile_page.dart';
+import 'package:shopyneer/features/return_policy/return_policies_page.dart';
+import 'package:shopyneer/features/returns/return_products_page.dart';
 import 'package:shopyneer/features/search_resualt/search_resault_page.dart';
 import 'package:shopyneer/features/support/support_page.dart';
+
+import '../../features/common_question/common_questions_page.dart';
+import '../../features/privacy_polocy/privacy_policies_page.dart';
+import '../../features/sellers/be_seller_page.dart';
+import '../../features/shipping_policy/shipping_policy_page.dart';
 
 ///don't use Navigator.of(context)
 ///must use this
@@ -92,6 +103,15 @@ abstract class Nav {
         context,
         PageKey.editProfile,
         const EditProfilePage(),
+      );
+
+  static orderTrackingPage(
+    BuildContext context,
+  ) async =>
+      await _push(
+        context,
+        PageKey.editProfile,
+        OrderTrackingTimeline(),
       );
 
   static offerPage(
@@ -185,16 +205,56 @@ abstract class Nav {
         PageKey.register,
         const RegisterPage(),
       );
+
+  static termsAndConditionPage({required BuildContext context}) async =>
+      await _push(
+        context,
+        PageKey.register,
+        const TermsAndConditionsPage(),
+      );
+
+  static checkpoutPage({required BuildContext context}) async => await _push(
+        context,
+        PageKey.register,
+        const CheckoutPage(),
+      );
+
   static ordersPage({required BuildContext context}) async => await _push(
         context,
         PageKey.orders,
         const OrdersPage(),
       );
 
+  static returnsPage({required BuildContext context}) async => await _push(
+        context,
+        PageKey.orders,
+        const ReturnProductsPage(),
+      );
+
+  static privacyPolicyPage({required BuildContext context}) async =>
+      await _push(
+        context,
+        PageKey.orders,
+        const PrivacyPolicyPage(),
+      );
+
+  static returnPolicyPage({required BuildContext context}) async => await _push(
+        context,
+        PageKey.orders,
+        const ReturnPolicyPage(),
+      );
+
   static techSupportPage({required BuildContext context}) async => await _push(
         context,
         PageKey.orders,
         SupportScreen(),
+      );
+
+  static shippingPolicyPage({required BuildContext context}) async =>
+      await _push(
+        context,
+        PageKey.orders,
+        ShippingPolicyPage(),
       );
 
   static registerOtp({
@@ -237,6 +297,12 @@ abstract class Nav {
         EditAddressPage(),
       );
 
+  static commonQuestionsPage(BuildContext context) async => await _push(
+        context,
+        PageKey.login,
+        FAQPage(),
+      );
+
   static addAddressPage(BuildContext context) async => await _push(
         context,
         PageKey.login,
@@ -254,6 +320,13 @@ abstract class Nav {
         PageKey.login,
         FavoritesPage(),
       );
+
+  static beSellerPage(BuildContext context) async => await _push(
+        context,
+        PageKey.login,
+        BeSellerPage(),
+      );
+
   static searchPage(BuildContext context, String searchWord) async =>
       await _push(
         context,
@@ -267,6 +340,12 @@ abstract class Nav {
         context,
         PageKey.login,
         ProductDetailsPage(),
+      );
+
+  static aboutAppPage(BuildContext context) async => await _push(
+        context,
+        PageKey.login,
+        AboutAppPage(),
       );
 
   static categoryDetailsPage(BuildContext context) async => await _push(

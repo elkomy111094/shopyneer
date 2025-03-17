@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:shopyneer/config/theme/styles_manager.dart';
+import 'package:shopyneer/shared/theme/styles_manager.dart';
 
 class AnimatedTextWidget extends StatelessWidget {
   TextStyle? style;
