@@ -1,0 +1,2 @@
+C:/Users/ThinkPad/StudioProjects/shopyneer/android/app/.cxx/RelWithDebInfo/2l534z3z/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/ThinkPad/StudioProjects/shopyneer/android/app/.cxx/RelWithDebInfo/2l534z3z/arm64-v8a/CMakeFiles/rebuild_cache.dir
