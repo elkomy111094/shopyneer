@@ -1309,7 +1309,7 @@ class Header extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-          color: primary.withOpacity(.03),
+          color: Colors.white,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(6.r),
             bottomRight: Radius.circular(6.r),

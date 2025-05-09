@@ -108,9 +108,9 @@ class ProfilePage extends StatelessWidget {
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 2.5,
+                        childAspectRatio: 3,
                         mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
+                        crossAxisSpacing: 20,
                       ),
                       children: [
                         _buildProfileTile('الطلبات', subTitle: "إداره وتتبع",
@@ -290,7 +290,7 @@ class ProfilePage extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: primary.withOpacity(.1)),
+          border: Border.all(color: greyFA),
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.h),
         ),
@@ -344,7 +344,7 @@ class ProfilePage extends StatelessWidget {
         color: Colors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.h),
-            side: BorderSide(color: primary.withOpacity(.1))),
+            side: BorderSide(color: greyFA)),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.h),
           child: ListTile(
@@ -354,7 +354,7 @@ class ProfilePage extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.circle, color: primary.withOpacity(.1)),
               child: Padding(
-                padding: EdgeInsets.all(10.h),
+                padding: EdgeInsets.all(5.h),
                 child: Icon(
                   Icons.chevron_right,
                   color: primary,

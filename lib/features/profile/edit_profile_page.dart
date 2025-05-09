@@ -117,82 +117,79 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xffffffff),
-        appBar: GeneralAppBar(routeName: "تعديل الملف الشخصي"),
-        body: BlocBuilder<ProfileBloc, ProfileState>(
-          builder: (context, state) {
-            return Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          controller: _scrollController,
-                          child: Padding(
-                            padding: EdgeInsets.all(16.h),
-                            child: Form(
-                              key: _updateKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  buildProfileFormFields(),
-                                ],
-                              ),
+    return Scaffold(
+      backgroundColor: Color(0xffffffff),
+      appBar: GeneralAppBar(routeName: "تعديل الملف الشخصي"),
+      body: BlocBuilder<ProfileBloc, ProfileState>(
+        builder: (context, state) {
+          return Column(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        controller: _scrollController,
+                        child: Padding(
+                          padding: EdgeInsets.all(16.h),
+                          child: Form(
+                            key: _updateKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                buildProfileFormFields(),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(16.h),
-                        child: BlocConsumer<ProfileBloc, ProfileState>(
-                          listener: (context, state) {
-                            if (state is UpdateProfileDataSuccessState) {
-                              SnackBarBuilder.showFeedBackMessage(
-                                context,
-                                Loc.dataSavedSuccessfully(),
-                                isSuccess: true,
-                              );
-                              Nav.mainLayout(context);
-                            } else if (state is UpdateProfileDataFailedState) {
-                              SnackBarBuilder.showFeedBackMessage(
-                                context,
-                                state.error,
-                                isSuccess: false,
-                              );
-                            }
-                          },
-                          builder: (context, state) {
-                            return CustomElevatedButton(
-                              condition:
-                                  state is! UpdateProfileDataLoadingState,
-                              onTap: () {
-                                if (_updateKey.currentState!.validate()) {}
-                              },
-                              buttonName: Loc.save(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(16.h),
+                      child: BlocConsumer<ProfileBloc, ProfileState>(
+                        listener: (context, state) {
+                          if (state is UpdateProfileDataSuccessState) {
+                            SnackBarBuilder.showFeedBackMessage(
+                              context,
+                              Loc.dataSavedSuccessfully(),
+                              isSuccess: true,
                             );
-                          },
-                        ),
+                            Nav.mainLayout(context);
+                          } else if (state is UpdateProfileDataFailedState) {
+                            SnackBarBuilder.showFeedBackMessage(
+                              context,
+                              state.error,
+                              isSuccess: false,
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          return CustomElevatedButton(
+                            condition: state is! UpdateProfileDataLoadingState,
+                            onTap: () {
+                              if (_updateKey.currentState!.validate()) {}
+                            },
+                            buttonName: Loc.save(),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                state is UpdateProfileDataLoadingState?
-                    ? GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          color: Colors.transparent,
-                        ),
-                      )
-                    : const SizedBox(),
-              ],
-            );
-          },
-        ),
+              ),
+              state is UpdateProfileDataLoadingState?
+                  ? GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: Colors.transparent,
+                      ),
+                    )
+                  : const SizedBox(),
+            ],
+          );
+        },
       ),
     );
   }

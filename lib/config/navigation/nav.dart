@@ -5,7 +5,6 @@ import 'package:shopyneer/core/utils/widget_utils.dart';
 import 'package:shopyneer/core/widgets/delete_bottom_sheet.dart';
 import 'package:shopyneer/core/widgets/logout_bottom_sheet.dart';
 import 'package:shopyneer/core/widgets/must_login_bottom_sheet.dart';
-import 'package:shopyneer/features/%20about/about_app.dart';
 import 'package:shopyneer/features/Addresses/add_address.dart';
 import 'package:shopyneer/features/Addresses/edit_address_page.dart';
 import 'package:shopyneer/features/Addresses/my_addresses_page.dart';
@@ -22,6 +21,7 @@ import 'package:shopyneer/features/Shopping_Cart/checkout_page.dart';
 import 'package:shopyneer/features/Terms_and_conditions/terms_and_conditions_page.dart';
 import 'package:shopyneer/features/brands/barnd_page.dart';
 import 'package:shopyneer/features/favorites/favorites_page.dart';
+import 'package:shopyneer/features/gifts/gift_details.dart';
 import 'package:shopyneer/features/mainLayout/main_layout.dart';
 import 'package:shopyneer/features/notifications/notification_page.dart';
 import 'package:shopyneer/features/offers/offers_page.dart';
@@ -32,6 +32,7 @@ import 'package:shopyneer/features/returns/return_products_page.dart';
 import 'package:shopyneer/features/search_resualt/search_resault_page.dart';
 import 'package:shopyneer/features/support/support_page.dart';
 
+import '../../features/about/about_app.dart';
 import '../../features/common_question/common_questions_page.dart';
 import '../../features/privacy_polocy/privacy_policies_page.dart';
 import '../../features/sellers/be_seller_page.dart';
@@ -141,6 +142,9 @@ abstract class Nav {
 
   static notificationPage(BuildContext context) async =>
       await _push(context, PageKey.notificationPage, const NotificationPage());
+
+  static giftDetailsPage(BuildContext context) async => await _push(
+      context, PageKey.notificationPage, const GiftCardDetailsPage());
 
   //
 

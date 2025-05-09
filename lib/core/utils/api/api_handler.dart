@@ -56,7 +56,7 @@ class ApiHandler {
   Future<DioException> _customErrorHandler(
       DioException error, ErrorInterceptorHandler) async {
     DioException e = DioException(
-      message: error.response?.data['message'] ?? error.message,
+      message: error.response?.data['message'] ?? error.message ?? "",
       error: error.error,
       requestOptions: error.requestOptions,
       response: error.response,

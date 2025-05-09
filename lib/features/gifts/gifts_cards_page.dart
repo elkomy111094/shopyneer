@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:shopyneer/config/navigation/nav.dart';
 import 'package:shopyneer/core/utils/get_asset_path.dart';
 import 'package:shopyneer/core/widgets/dot_seperator.dart';
 import 'package:shopyneer/core/widgets/elevated_button.dart';
@@ -233,25 +234,30 @@ class GiftCardsPage extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           final item = categories[index];
-          return Card(
-            color: Color(0xffFDEBF0),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            elevation: 0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Picture(
-                  getAssetImage("shopyneer_gift.png"),
-                  height: 100.h,
-                  width: 100.h,
-                ),
-                Text(
-                  item["title"]!,
-                  style: getBoldBlack12Style(),
-                ),
-                Gap(10.h),
-              ],
+          return GestureDetector(
+            onTap: () {
+              Nav.giftDetailsPage(context);
+            },
+            child: Card(
+              color: Color(0xffFDEBF0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              elevation: 0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Picture(
+                    getAssetImage("shopyneer_gift.png"),
+                    height: 100.h,
+                    width: 100.h,
+                  ),
+                  Text(
+                    item["title"]!,
+                    style: getBoldBlack12Style(),
+                  ),
+                  Gap(10.h),
+                ],
+              ),
             ),
           );
         },

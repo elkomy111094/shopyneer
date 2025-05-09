@@ -10,7 +10,7 @@ TextStyle _getTextStyle(
   Color color,
 ) {
   return TextStyle(
-    fontSize: fontSize.sp + 1,
+    fontSize: fontSize.sp,
     fontWeight: fontWeight,
     fontFamily: cairo,
     color: color,
@@ -94,6 +94,14 @@ TextStyle getBoldPrimary14Style() {
   return _getTextStyle(
     14.sp,
     FontWeight.w700,
+    primary,
+  );
+}
+
+TextStyle getMediumPrimary14Style() {
+  return _getTextStyle(
+    14.sp,
+    FontWeight.w600,
     primary,
   );
 }
